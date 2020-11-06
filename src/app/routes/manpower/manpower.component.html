@@ -1,0 +1,232 @@
+<div class="ant-modal-body">
+    <div class="brand-container" id="container">
+        <div class="wrap">
+            <!--定位左边返回-->
+            <a class="mp-back" (click)="close()"></a>
+            <header>
+                <h2 class="rcsj" (click)="openUserDialog(this.cardNo)">个人劳动力分析</h2>
+            </header>
+            <section class="mainbox">
+                <div class="mp-date">{{currentTime}}</div>
+                <div class="item left">
+                    <div class="panel panel-pulg">
+                        <div class="panel-header">
+                            <img src="/assets/images/icon01.png" alt="">
+                            <span>基本信息</span>
+                        </div>
+                        <div class="table">
+                            <table>
+                                <tr>
+                                    <td colspan="2">姓名</td>
+                                    <td colspan="3">{{userInfo.name}}</td>
+                                    <td colspan="2">性别</td>
+                                    <td>{{userInfo.gender}}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">民族</td>
+                                    <td colspan="3">{{userInfo.nation}}</td>
+                                    <td colspan="2">年龄</td>
+                                    <td>{{userInfo.age}}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">户籍</td>
+                                    <td colspan="6">{{userInfo.address}}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">文化程度</td>
+                                    <td colspan="3">{{userInfo.education}}</td>
+                                    <td colspan="2">健康状况</td>
+                                    <td>{{userInfo.bodyState}}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">是否务农</td>
+                                    <td colspan="3">{{userInfo.farmer}}</td>
+                                    <td colspan="2">特殊人群标识</td>
+                                    <td>{{userInfo.specialCrowd}}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="panel panel-pulg">
+                        <div class="panel-header">
+                            <img src="/assets/images/sbxx.png" alt="">
+                            <span>社保信息</span>
+                        </div>
+                        <ul class="sb-list sb-list-mar">
+                            <li>
+                                <div>
+                                    <img src="/assets/images/icon03.png" alt="">
+                                </div>
+                                <p>参保时间</p>
+                                <p>参保状态</p>
+                            </li>
+                            <li>
+                                <p>养老保险</p>
+                                <p>{{socialSecurity.pensionJoinTime}}</p>
+                                <p>{{socialSecurity.pensionJoinStatus}}</p>
+                            </li>
+                        </ul>
+                        <ul class="sb-list sb-list-mar">
+                            <li>
+                                <div>
+                                    <img src="/assets/images/icon04.png" alt="">
+                                </div>
+                                <p>参保时间</p>
+                                <p>参保状态</p>
+                            </li>
+                            <li>
+                                <p>失业保险</p>
+                                <p>{{socialSecurity.unempInsuranceJoinTime}}</p>
+                                <p>{{socialSecurity.unempInsuranceJoinStatus}}</p>
+                            </li>
+                        </ul>
+                        <ul class="sb-list sb-list-mar">
+                            <li>
+                                <div>
+                                    <img src="/assets/images/icon05.png" alt="">
+                                </div>
+                                <p>参保时间</p>
+                                <p>参保状态</p>
+                            </li>
+                            <li>
+                                <p>工伤保险</p>
+                                <p>{{socialSecurity.injuryInsuranceJoinTime}}</p>
+                                <p>{{socialSecurity.injuryInsuranceJoinStatus}}</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="item center">
+                    <ul class="center-list">
+                        <li class="cursor" (click)="loadLabelTotal()">
+                            <p>社保信息</p>
+                            <div class="center-list01">
+                                <nz-spin [nzSpinning]="labelTotalLoading">
+                                    <span>{{labelTotal.socialInfoNumber}}</span>
+                                </nz-spin>
+                            </div>
+                        </li>
+                        <li class="cursor" (click)="loadLabelTotal()">
+                            <p>收入信息</p>
+                            <div class="center-list02">
+                                <nz-spin [nzSpinning]="labelTotalLoading">
+                                    <span>{{labelTotal.IncomeInfoNumber}}</span>
+                                </nz-spin>
+                            </div>
+                        </li>
+                        <li class="cursor" (click)="loadLabelTotal()">
+                            <p>就业信息</p>
+                            <div class="center-list03">
+                                <nz-spin [nzSpinning]="labelTotalLoading">
+                                    <span>{{labelTotal.empInfoNumber}}</span>
+                                </nz-spin>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="info-box">
+                        <img src="/assets/images/mode03_bj08.png" alt="">
+                        <div class="info-foot-bg" id="div1">
+                            <div class="ball cursor" *ngFor="let item of smartResult">{{item.type}}</div>
+                        </div>
+                        <ul class="info-mess">
+                            <li class="cursor" (click)="openPersonArchivesDialog()">
+                                <img src="/assets/images/mode03_bj08v1.png" alt="">
+                            </li>
+                            <li class="cursor" (click)="openTrainingDialog()">
+                                <nz-spin [nzSpinning]="trainingLoading">
+                                    <img src="/assets/images/mode03_bj08v3.png" alt="">
+                                </nz-spin>
+                            </li>
+                            <li class="cursor" (click)="openSkillsDialog()">
+                                <nz-spin [nzSpinning]="skillsLoading">
+                                    <img src="/assets/images/mode03_bj08v2.png" alt="">
+                                </nz-spin>
+                            </li>
+                            <li class="cursor" (click)="openJobDialog()">
+                                <nz-spin [nzSpinning]="jobLoading">
+                                    <img src="/assets/images/mode03_bj08v4.png" alt="">
+                                </nz-spin>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="center-footer">
+                        <ul>
+                            <li>
+                                <img src="/assets/images/pt03.png" alt="">
+                            </li>
+                            <li class="footer-last">
+                                <p>
+                                    <span>社保信息</span>
+                                    <span>0</span>
+                                    <span>/0</span>
+                                </p>
+                                <p>
+                                    <span>社保信息</span>
+                                    <span>0</span>
+                                    <span>/0</span>
+                                </p>
+                                <p>
+                                    <span>社保信息</span>
+                                    <span>0</span>
+                                    <span>/0</span>
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="item right">
+                    <div class="panel">
+                        <div class="panel-header">
+                            <img src="/assets/images/srxx.png" alt="">
+                            <span>收入信息</span>
+                        </div>
+                        <app-person-income-chart autoLoad="true"
+                                                 url="api/ldl_v/personal/income_info?cardNo={{this.cardNo}}"></app-person-income-chart>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-header">
+                            <img src="/assets/images/jyjl.png" alt="">
+                            <span>培训信息</span>
+                        </div>
+                        <div class="px-box">
+                            <div class="px-box-list">
+                                <ul>
+                                    <li *ngFor="let item of trainRecords">
+                                        <div class="px-left">
+                                            <div class="px-ball"></div>
+                                            <div class="px-solid"></div>
+                                        </div>
+                                        <div class="px-right">
+                                            <p>培训时间:{{item.obtainedTime}},培训机构:{{item.trainOrg}},培训工种:{{item.level}}</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-header">
+                            <img src="/assets/images/icon06.png" alt="">
+                            <span>技能证书情况</span>
+                        </div>
+                        <div class="px-box">
+                            <div class="px-box-list">
+                                <ul>
+                                    <li *ngFor="let item of skillCert">
+                                        <div class="px-left">
+                                            <div class="px-ball"></div>
+                                            <div class="px-solid"></div>
+                                        </div>
+                                        <div class="px-right">
+                                            <p>培训时间:{{item.obtainedTime}},培训工种:{{item.jobName}},等级:{{item.level}}</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>

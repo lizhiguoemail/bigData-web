@@ -1,0 +1,41 @@
+<header>
+    <h2 class="rcsj">{{navTitle}}</h2>
+    <div class="search">
+        <i title="点击[打开/关闭]搜索框" nz-icon [nzType]="ismargin ? 'right' : 'search'" class="cursor cursor-new"
+           (click)="isOpen()"></i>
+        <div class="search-left-box">
+            <nz-input-group [ngClass]="{'search-marin' : ismargin}" [nzSuffix]="suffixIconButton" class="search-isopen">
+                <input id="searchInput" type="text" (keyup)="keyUpSearch($event)" nz-input [(ngModel)]="card"
+                    maxlength="18" placeholder="请输入身份证号"/>
+            </nz-input-group>
+            <ng-template #suffixIconButton>
+                <i nz-icon nzType="search" class="cursor" (click)="openPersonDetail()"></i>
+            </ng-template>
+        </div>
+    </div>
+    <!--标题-->
+    <div class="weather">
+        <div class="weather-title">
+            <div></div>
+        </div>
+        <div class="weather-left">
+            <div class="full">
+                <i nz-icon nzType="arrow-left" nz-tooltip nzTooltipTitle="后退" nzTooltipPlacement="bottom" class="cursor" nzTheme="outline" (click)="back()"></i>
+                <i nz-icon nzType="arrow-right" nz-tooltip nzTooltipTitle="前进" nzTooltipPlacement="bottom" class="cursor" nzTheme="outline" (click)="forward()"></i>
+                <i nz-icon [nzType]="status ? 'fullscreen-exit' : 'fullscreen'" class="cursor" nz-tooltip [nzTooltipTitle]="status ? '退出全屏' : '全屏显示'" nzTooltipPlacement="bottom" nzTheme="outline" (click)="fullscreen()"></i>
+            </div>
+            <a routerLink="/statistics">
+                <p [ngClass]="{'active' : setActive('statistics')}" class="header-link">监测与统计</p>
+            </a>
+            <a routerLink="/analysis">
+                <p [ngClass]="{'active' : setActive('analysis')}" class="header-link">综合分析</p>
+            </a>
+            <a routerLink="/skills">
+                <p [ngClass]="{'active' : setActive('skills')}" class="header-link">精准技能提升</p>
+            </a>
+            <a routerLink="/jobs">
+                <p [ngClass]="{'active' : setActive('jobs')}" class="header-link">精准就业</p>
+            </a>
+        </div>
+    </div>
+</header>

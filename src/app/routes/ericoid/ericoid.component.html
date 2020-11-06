@@ -1,0 +1,198 @@
+<div class="brand-container">
+    <div class="wrap">
+        <!--定位左边返回-->
+        <a class="mp-back" (click)="close()"></a>
+        <header>
+            <img src="/assets/images/xxx.png" alt="">
+        </header>
+        <section class="mainbox">
+            <!--左侧信息-->
+            <div class="eri-left">
+                <div class="left-top">
+                    <img src="/assets/images/img01.png" alt="">
+                </div>
+                <div class="left-right-bg"></div>
+                <div class="left-bottom-bg">
+                    <img src="/assets/images/img01.png" alt="">
+                </div>
+                <div class="left-content">
+                    <div class="left-info">
+                        <img src="/assets/images/dome2.jpg" alt="">
+                    </div>
+                    <ul>
+                        <ul>
+                            <li>
+                                <a (click)="move('information')" [ngClass]="{'cur':uncur=='information'}">
+                                    <b>基本信息</b><i>&nbsp;</i><em>&nbsp;</em>
+                                </a>
+                            </li>
+                            <li>
+                                <a (click)="move('obtain')" [ngClass]="{'cur':uncur=='obtain'}">
+                                    <b>就业信息</b><i>&nbsp;</i><em>&nbsp;</em>
+                                </a>
+                            </li>
+                            <li>
+                                <a (click)="move('social')" [ngClass]="{'cur':uncur=='social'}">
+                                    <b>社保信息</b><i>&nbsp;</i><em>&nbsp;</em>
+                                </a>
+                            </li>
+                            <li>
+                                <a (click)="move('skill')" [ngClass]="{'cur':uncur=='skill'}">
+                                    <b>技能培训信息</b><i>&nbsp;</i><em>&nbsp;</em>
+                                </a>
+                            </li>
+                        </ul>
+                    </ul>
+                </div>
+            </div>
+            <!--右侧内容-->
+            <div class="eri-right" >
+                <div class="right-box">
+                    <!--基本信息-->
+                    <div id="information" class="jbxi right-box-content">
+                        <div class="jbxi-left-top">
+                            <img src="/assets/images/img08.png"/>
+                        </div>
+                        <div class="jbxi-left-top1">
+                            <img src="/assets/images/img09.png"/>
+                        </div>
+                        <div class="jbxi-left-bottom">
+                            <img src="/assets/images/img07.png"/>
+                        </div>
+                        <div class="jbxi-left-bottom1">
+                            <img src="/assets/images/img07.png"/>
+                        </div>
+                        <ul>
+                            <li>姓名：{{userInfo.name}}</li>
+                            <li>性别：{{userInfo.gender}}</li>
+                            <li>出生日期：{{userInfo.birthday}}</li>
+                            <li>民族：{{userInfo.nation}}</li>
+                            <li>籍贯：{{userInfo.address}}</li>
+                            <li>文化程度：{{userInfo.education}}</li>
+                            <!-- <li>毕业院校：{{userInfo.}}</li> -->
+                            <li>健康状况：{{userInfo.bodyState}}</li>
+                            <li>特殊人群标识：{{userInfo.specialCrowd}}</li>
+                        </ul>
+                    </div>
+                    <!--通用样式块-->
+                    <div class="footline">
+                        <img src="/assets/images/img06.png">
+                    </div>
+                    <div class="space">
+                        <img src="/assets/images/img04.png" alt="">
+                        <div></div>
+                        <img src="/assets/images/img04.png" alt="">
+                    </div>
+                    <!--就业信息-->
+                    <div id="obtain" class="right-box-content jyxx">
+                        <div class="jbxi-left-bottom">
+                            <img src="/assets/images/img07.png"/>
+                        </div>
+                        <div class="jbxi-left-bottom1">
+                            <img src="/assets/images/img07.png"/>
+                        </div>
+                        <p class="jyxx-title">就业信息</p>
+                        <p>{{empInfo.workTime}},入职{{empInfo.companyName}}</p>
+                    </div>
+                    <div class="eri-solid"></div>
+                    <div class="footline">
+                        <img src="/assets/images/img06.png">
+                    </div>
+                    <div class="space">
+                        <img src="/assets/images/img04.png" alt="">
+                        <div></div>
+                        <img src="/assets/images/img04.png" alt="">
+                    </div>
+                    <!--社保信息-->
+                    <div id="social" class="right-box-content sbxx">
+                        <div class="jbxi-left-bottom">
+                            <img src="/assets/images/img07.png"/>
+                        </div>
+                        <div class="jbxi-left-bottom1">
+                            <img src="/assets/images/img07.png"/>
+                        </div>
+                        <div class="sbxx-top">
+                            <span>因病累计花费10（万元）</span>
+                        </div>
+                        <p class="sbxx-title">社保信息</p>
+                        <ul>
+                            <li>
+                                <em></em>
+                                <i></i>
+                                <b>养老保险</b>
+                                <div>
+                                    <p>参保时间: {{socialSecurity.pensionJoinTime}} 参保状态: {{socialSecurity.pensionJoinStatus}}</p>
+                                </div>
+                            </li>
+                            <li>
+                                <em></em>
+                                <i></i>
+                                <b>失业保险</b>
+                                <div>
+                                    <p>参保时间: {{socialSecurity.unempInsuranceJoinTime}} 参保状态: {{socialSecurity.unempInsuranceJoinStatus}}</p>
+                                </div>
+                            </li>
+                            <li>
+                                <em></em>
+                                <i></i>
+                                <b>工伤保险</b>
+                                <div>
+                                    <p>参保时间: {{socialSecurity.injuryInsuranceJoinTime}} 参保状态: {{socialSecurity.injuryInsuranceJoinStatus}}</p>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="eri-solid"></div>
+                    </div>
+                    <!--通用样式块-->
+                    <div class="footline">
+                        <img src="/assets/images/img06.png">
+                    </div>
+                    <div class="space">
+                        <img src="/assets/images/img04.png" alt="">
+                        <div></div>
+                        <img src="/assets/images/img04.png" alt="">
+                    </div>
+                    <!--技能培训信息-->
+                    <div id="skill" class="right-box-content jnpx">
+                        <div class="jbxi-left-bottom">
+                            <img src="/assets/images/img07.png"/>
+                        </div>
+                        <div class="jbxi-left-bottom1">
+                            <img src="/assets/images/img07.png"/>
+                        </div>
+                        <div class="jnpx-box">
+                            <div class="jnpx-img">
+                                <img src="/assets/images/zyjn.jpg" alt="">
+                            </div>
+                            <ul class="jnpx-list">
+                                <li>
+                                    <p>获证时间</p>
+                                    <p>工种名称</p>
+                                    <p>层级</p>
+                                </li>
+                                <li *ngFor="let item of skillCert">
+                                    <p>{{item.obtainedTime}}</p>
+                                    <p>{{item.jobName}}</p>
+                                    <p>{{item.level}}</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--通用样式块-->
+                    <div class="footline">
+                        <img src="/assets/images/img06.png">
+                    </div>
+                    <div class="space">
+                        <img src="/assets/images/img04.png" alt="">
+                        <div></div>
+                        <img src="/assets/images/img04.png" alt="">
+                    </div>
+                    <div class="footline last-footline">
+                        <img src="/assets/images/img06.png">
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+</div>

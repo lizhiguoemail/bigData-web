@@ -1,0 +1,28 @@
+﻿import { InjectionToken, Injector, Type } from '@angular/core';
+
+/**
+ * Ioc操作
+ */
+export class IocHelper {
+    /**
+     * 全局注入器
+     */
+    static injector: Injector;
+    /**
+     * 当前组件注入器
+     */
+    static componentInjector: Injector;
+
+    /**
+     * 获取实例
+     * @param token 实例标记，一般为类或接口名称,范例：util.ioc.get(Http)
+     */
+    static get<T>(token: Type<T> | InjectionToken<T>): T;
+    static get(token: any): any;
+    static get(token: any): any {
+        if (IocHelper.componentInjector) {
+            return IocHelper.componentInjector.get<any>(token);
+        }
+        return IocHelper.injector.get<any>(token);
+    }
+}

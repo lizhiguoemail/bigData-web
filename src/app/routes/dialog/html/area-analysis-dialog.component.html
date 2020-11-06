@@ -1,0 +1,32 @@
+<!-- <div class="ant-modal-header">
+  <div class="modal-title" backdrop="static">{{data.type}}⇨{{data.name}}</div>
+</div> -->
+<div class="ant-modal-body body">
+  <nz-table #table [nzData]="dataList" nzTableLayout="fixed" nzSize="small" nzPageSize="100" nzShowPagination="false">
+    <thead>
+      <tr class="none">
+        <th nzWidth="40%">名称</th>
+        <th nzWidth="40%">比例</th>
+        <th nzWidth="20%">数量</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let data of table.data">
+        <ng-container *ngFor="let item of mapOfExpandedData[data.code]">
+          <tr *ngIf="(item.parent && item.parent.expand) || !item.parent">
+            <td [nzIndentSize]="item.level! * 20" [nzShowExpand]="!!item.children" [(nzExpand)]="item.expand"
+              (nzExpandChange)="collapse(mapOfExpandedData[data.code], item, $event)">
+              <a (click)="openUserDialog(item)">{{ item.name }}</a>
+            </td>
+            <td>
+              <nz-progress [nzPercent]="item.percent*100" [nzStrokeColor]="{ '0%': '#108ee9', '100%': '#87d068' }"
+                nzSize="small" nzStatus="active" [nzFormat]="formatOne">
+              </nz-progress>
+            </td>
+            <td style="padding-left: 20px;">{{ item.value }} 人</td>
+          </tr>
+        </ng-container>
+      </ng-container>
+    </tbody>
+  </nz-table>
+</div>

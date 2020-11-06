@@ -1,0 +1,13 @@
+<div class="exception__img-block">
+    <div class="exception__img" [style.backgroundImage]="_img"></div>
+  </div>
+  <div class="exception__cont">
+    <h1 class="exception__cont-title" [innerHTML]="_title" style="color: #FFFFFF"></h1>
+    <div class="exception__cont-desc" [innerHTML]="_desc" style="color: #FFFFFF"></div>
+    <div class="exception__cont-actions">
+      <div (cdkObserveContent)="checkContent()" #conTpl>
+        <ng-content></ng-content>
+      </div>
+      <button nz-button (click)="goHome()" [nzType]="'primary'">返回首页</button>
+    </div>
+  </div>

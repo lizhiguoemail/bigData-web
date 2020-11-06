@@ -1,0 +1,43 @@
+<!-- <div class="ant-modal-header">
+    <div class="modal-title" backdrop="static">{{data.type}}⇨{{data.name}}</div>
+</div> -->
+<div class="ant-modal-body body">
+    <nz-tabset *ngIf="tabs.length > 0">
+        <nz-tab *ngFor="let item of tabs" (nzClick)="tabClick(item)" [nzTitle]="item.pinyin" style="margin: 0 15px 0 0">
+            <span style="padding: 0px 5px" *ngFor="let child of item.region">
+                <a (click)="regionClick(child.code)">{{child.name}}</a>
+            </span>
+        </nz-tab>
+    </nz-tabset>
+    <nz-table-wrapper #tableWrapper [baseUrl]="data.url" sortKey="nl" [(queryParam)]="queryParam">
+        <nz-table #table (nzPageIndexChange)="tableWrapper.pageIndexChange($event)" style="padding-top: 0;"
+            (nzPageSizeChange)="tableWrapper.pageSizeChange($event)" [(nzPageIndex)]="tableWrapper.queryParam.page"
+            [(nzPageSize)]="tableWrapper.queryParam.pageSize" [nzData]="tableWrapper.dataSource"
+            [nzFrontPagination]="false" [nzLoading]="tableWrapper.loading" [nzSize]="tableWrapper.tableSize"
+            [nzShowPagination]="tableWrapper.showPagination" [nzShowQuickJumper]="true" [nzShowSizeChanger]="true"
+            [nzShowTotal]="tableTotalDescriptionTpl" [nzTotal]="tableWrapper.totalCount">
+            <thead (nzSortChange)="tableWrapper.sort($event)">
+                <tr>
+                    <th nzWidth="50px">#</th>
+                    <th [nzSortFn]="true" nzColumnKey="xm">姓名</th>
+                    <th [nzSortFn]="true" nzColumnKey="xb">性别</th>
+                    <th [nzSortFn]="true" nzColumnKey="mz">民族</th>
+                    <th [nzSortFn]="true" nzColumnKey="whcd">文化程序</th>
+                    <th [nzSortFn]="true" nzColumnKey="jkzk">健康状况</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let row of table.data">
+                    <td>{{row.lineNumber}}</td>
+                    <td><a (click)="openUserDialog(row.cardNo)">{{row.name}}</a></td>
+                    <td>{{row.gender}}</td>
+                    <td>{{row.nation}}</td>
+                    <td>{{row.education}}</td>
+                    <td>{{row.bodyState}}</td>
+                </tr>
+            </tbody>
+        </nz-table>
+        <ng-template #tableTotalDescriptionTpl let-range="range" let-total>{{ range[0] }}-{{ range[1] }} 共
+            {{ total }} 条</ng-template>
+    </nz-table-wrapper>
+</div>

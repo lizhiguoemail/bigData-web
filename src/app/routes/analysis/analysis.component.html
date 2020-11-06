@@ -1,0 +1,91 @@
+<app-nav navTitle="劳动力综合分析"></app-nav>
+
+<section class="mainbox">
+    <div class="item left">
+        <div class="panel">
+            <!-- 学历分析 -->
+            <app-degree-analysis-chart #degreeAnalysis autoLoad="true" url="api/ldl_v/analysis/education"
+                                       [areaData]="areaData"></app-degree-analysis-chart>
+        </div>
+        <div class="panel">
+            <!-- 性别分析 -->
+            <app-gender-analysis-chart #genderAnalysis autoLoad="true" url="api/ldl_v/analysis/gender"
+                                       [areaData]="areaData"></app-gender-analysis-chart>
+        </div>
+        <div class="panel">
+            <!-- 年龄段分析 -->
+            <app-age-analysis-chart #ageAnalysis autoLoad="true" url="api/ldl_v/analysis/age"
+                                    [areaData]="areaData"></app-age-analysis-chart>
+        </div>
+    </div>
+    <div class="item center">
+        <div class="resume">
+            <div class="resume-hd">
+                <ul>
+                    <li class="cursor">
+                        <app-count-to-chart (click)="openDataDialog('全省建档立卡人数','14','1')" [count]="statistics.sum"
+                                            [config]="myOpts">0
+                        </app-count-to-chart>
+                    </li>
+                    <li class="cursor">
+                        <app-count-to-chart (click)="openDataDialog('农村劳动力','14','2')" [count]="statistics.country"
+                                            [config]="myOpts">0
+                        </app-count-to-chart>
+                    </li>
+                    <li class="cursor">
+                        <app-count-to-chart (click)="openDataDialog('城镇劳动力','14','3')" [count]="statistics.city"
+                                            [config]="myOpts">0
+                        </app-count-to-chart>
+                    </li>
+                    <li class="cursor">
+                        <app-count-to-chart (click)="openDataDialog('贫困劳动力','14','4')" [count]="statistics.poverty"
+                                            [config]="myOpts">0
+                        </app-count-to-chart>
+                    </li>
+                    <li class="cursor">
+                        <app-count-to-chart (click)="openDataDialog('2020年高校毕业生','14','5')"
+                                            [count]="statistics.college" [config]="myOpts">0
+                        </app-count-to-chart>
+                    </li>
+                </ul>
+            </div>
+            <div class="resume-bd">
+                <ul>
+                    <li>全省建档立卡人数</li>
+                    <li>农村劳动力</li>
+                    <li>城镇劳动力</li>
+                    <li>贫困劳动力</li>
+                    <li>2020年高校毕业生</li>
+                </ul>
+            </div>
+        </div>
+        <div class="map">
+            <div class="chart" id="chart_map">
+                <app-shanxi-map (onMapChange)="loadCounty($event)" autoLoad="true"
+                                url="api/ldl_v/data/map"></app-shanxi-map>
+            </div>
+            <div class="map1"></div>
+            <div class="map2"></div>
+            <div class="map3"></div>
+        </div>
+    </div>
+
+    <div class="item right">
+        <div class="panel">
+            <!-- 健康分析 -->
+            <app-health-analysis-chart #healthAnalysis autoLoad="true" url="api/ldl_v/analysis/health"
+                                       [areaData]="areaData"></app-health-analysis-chart>
+        </div>
+        <div class="panel">
+            <!-- 年收入分析 -->
+            <app-income-analysis-chart #incomeAnalysis autoLoad="true" url="api/ldl_v/analysis/income"
+                                       [areaData]="areaData"></app-income-analysis-chart>
+        </div>
+        <div class="panel">
+            <!-- 就业与失业分析 -->
+            <app-work-analysis-chart #workAnalysis autoLoad="true" url="api/ldl_v/analysis/work"
+                                     [areaData]="areaData"></app-work-analysis-chart>
+        </div>
+    </div>
+</section>
+

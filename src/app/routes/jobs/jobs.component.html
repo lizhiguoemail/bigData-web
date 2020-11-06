@@ -1,0 +1,40 @@
+<app-nav navTitle="劳动力精准就业"></app-nav>
+
+<section class="mainbox">
+    <div class="item left">
+        <div class="panel">
+            <!-- 就业情况分析 -->
+            <app-work-situation-analysis-chart #workSituationAnalysis autoLoad="true"
+                                               url="api/ldl_v/job/situation"></app-work-situation-analysis-chart>
+        </div>
+        <div class="panel">
+            <!-- 灵活就业 -->
+            <app-work-flexible-analysis-chart #workFlexibleAnalysis autoLoad="true"
+                                              url="api/ldl_v/job/flexible"></app-work-flexible-analysis-chart>
+        </div>
+    </div>
+    <div class="item center">
+        <div class="map">
+            <div class="chart" id="chart_map">
+                <app-shanxi-map (onMapChange)="loadCounty($event)" autoLoad="true"
+                                url="api/ldl_v/data/map"></app-shanxi-map>
+            </div>
+            <div class="map1"></div>
+            <div class="map2"></div>
+            <div class="map3"></div>
+        </div>
+    </div>
+
+    <div class="item right">
+        <div class="panel">
+            <!-- 就业培训分析 -->
+            <app-work-training-analysis-chart #workTrainingAnalysis autoLoad="true"
+                                              url="api/ldl_v/job/cultivate"></app-work-training-analysis-chart>
+        </div>
+        <div class="panel">
+            <!-- 就业统计分析 -->
+            <app-work-statistics-analysis-chart #workStatisticsAnalysis autoLoad="true"
+                                                url="api/ldl_v/job/statistics"></app-work-statistics-analysis-chart>
+        </div>
+    </div>
+</section>

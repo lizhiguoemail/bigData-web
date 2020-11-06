@@ -1,0 +1,39 @@
+<app-nav navTitle="劳动力精准技能提升"></app-nav>
+<section class="mainbox">
+    <div class="item left">
+        <div class="panel">
+            <!-- 有培训意愿与已参加培训对比 -->
+            <app-training-compare-chart #trainingCompare autoLoad="true"
+                                        url="api/ldl_v/skill/contrast"></app-training-compare-chart>
+        </div>
+        <div class="panel">
+            <!-- 培训人员年龄分布 -->
+            <app-training-age-distribution-chart #trainingAgeDistribution autoLoad="true" url="api/ldl_v/skill/age"
+                                                 [jobData]="jobData"></app-training-age-distribution-chart>
+        </div>
+    </div>
+    <div class="item center">
+        <div class="map">
+            <div class="chart" id="chart_map">
+                <app-shanxi-map (onMapChange)="loadCounty($event)" autoLoad="true"
+                                url="api/ldl_v/data/map"></app-shanxi-map>
+            </div>
+            <div class="map1"></div>
+            <div class="map2"></div>
+            <div class="map3"></div>
+        </div>
+    </div>
+
+    <div class="item right">
+        <div class="panel">
+            <!-- 培训意愿分析 -->
+            <app-training-intention-analysis-chart #trainingIntentionAnalysis autoLoad="true"
+                                                   url="api/ldl_v/skill/analyze"></app-training-intention-analysis-chart>
+        </div>
+        <div class="panel">
+            <!-- 培训前五工种 -->
+            <app-training-job-top5-chart #trainingJobTop5 autoLoad="true"
+                                         url="api/ldl_v/skill/five"></app-training-job-top5-chart>
+        </div>
+    </div>
+</section>

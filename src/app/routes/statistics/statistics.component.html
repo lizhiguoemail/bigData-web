@@ -1,0 +1,82 @@
+<app-nav navTitle="劳动力监测与统计"></app-nav>
+
+<section class="mainbox">
+    <div class="left">
+        <div class="left-text">
+            <div class="left-text-top">
+                <p>劳动力建档立卡入库总数</p>
+                <div class="left-num">
+                    <span class="cursor" (click)="openDataDialog('全省建档立卡人数','14','1')">{{statistics.sum}}</span>
+                </div>
+            </div>
+            <ul class="left-text-section">
+                <li>
+                    <p>农村劳动力</p>
+                    <span class="cursor" (click)="openDataDialog('农村劳动力','14','2')">{{statistics.country}}</span>
+                    <!-- <p class="left-text-people">人</p> -->
+                </li>
+                <li>
+                    <p>城镇劳动力</p>
+                    <span class="cursor" (click)="openDataDialog('城镇劳动力','14','3')">{{statistics.city}}</span>
+                    <!-- <p class="left-text-people">人</p> -->
+                </li>
+                <li>
+                    <p>贫困劳动力</p>
+                    <span class="cursor" (click)="openDataDialog('贫困劳动力','14','4')">{{statistics.poverty}}</span>
+                    <!-- <p class="left-text-people">人</p> -->
+                </li>
+                <li>
+                    <p>2020年高校毕业生</p>
+                    <span class="cursor" (click)="openDataDialog('2020年高校毕业生','14','5')">{{statistics.college}}</span>
+                    <!-- <p class="left-text-people">人</p> -->
+                </li>
+            </ul>
+
+        </div>
+        <div class="map-box">
+            <div class="map">
+                <div class="chart" id="chart_map">
+                    <app-shanxi-statistics-map (onMapChange)="loadCounty($event)" autoLoad="true"
+                                               url="api/ldl_v/data/map"></app-shanxi-statistics-map>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="right">
+        <ul class="right-list">
+            <li>
+                <p>技能证书统计</p>
+                <app-skill-cert-statistics-chart #skillCertStatistics autoLoad="true"
+                                                 url="api/ldl_v/statistics/skills"></app-skill-cert-statistics-chart>
+            </li>
+            <li>
+                <p>就业失业统计</p>
+                <app-work-situation-statistics-chart #workSituationStatistics autoLoad="true"
+                                                     workUrl="api/ldl_v/statistics/work"
+                                                     lossUrl="api/ldl_v/statistics/loss_jobs"></app-work-situation-statistics-chart>
+            </li>
+            <li>
+                <p>培训意愿统计</p>
+                <app-training-intention-statistics-chart #trainingIntentionStatistics autoLoad="true"
+                                                         url="api/ldl_v/statistics/train"></app-training-intention-statistics-chart>
+            </li>
+            <li>
+                <p>求职意愿统计</p>
+                <app-job-intention-statistics-chart #jobIntentionStatistics autoLoad="true"
+                                                    url="api/ldl_v/statistics/apply_jobs"></app-job-intention-statistics-chart>
+            </li>
+            <li>
+                <p>技能提升统计</p>
+                <app-skill-improve-statistics-chart #skillImproveStatistics autoLoad="true"
+                                                    url="api/ldl_v/statistics/upgrad_skills"></app-skill-improve-statistics-chart>
+            </li>
+            <li>
+                <p>劳务输出意愿统计</p>
+                <app-labor-output-situation-statistics-chart #laborOutputSituationStatistics autoLoad="true"
+                                                             url="api/ldl_v/statistics/export_labors"></app-labor-output-situation-statistics-chart>
+            </li>
+        </ul>
+    </div>
+</section>
+
